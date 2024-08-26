@@ -1,58 +1,13 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-struct node {
-  int value;
-  struct node *next;
-};
-
-struct node *new_list(int node_value) {
-  struct node *current = (struct node *)malloc(sizeof(struct node));
-  current->value = node_value;
-  current->next = NULL;
-  return current;
-}
-
-void append_node(struct node *head, int value) {
-  struct node *new_node = new_list(value);
-  while (head->next != NULL)
-    head = head->next;
-  head->next = new_node;
-}
-
-void insert_node(struct node *previous_node, int value) {
-  struct node *new_node = new_list(value);
-  if (previous_node->next != NULL) {
-    struct node *temporary = previous_node->next;
-    previous_node->next = new_node;
-    new_node->next = temporary;
-    return;
-  }
-  previous_node->next = new_node;
-}
-
-void print_list(struct node *head) {
-  while (head != NULL) {
-    (head->next != NULL) ? printf("%d, ", head->value)
-                         : printf("%d\n", head->value);
-    head = head->next;
-  }
-}
-
-void deallocate_list(struct node *head) {
-  struct node *temporary;
-  while (head != NULL) {
-    temporary = head->next;
-    free(head);
-    head = temporary;
-  }
-}
+#include "lib/linked_list_functions.h"
 
 int main() { //  NOTE: add update, delete, and reverse functions
-  struct node *head = new_list(10);
-  append_node(head, 30);
-  insert_node(head, 20);
-  print_list(head);
+  struct node *head = new_head(20);
+  insertion_at_tail(head, 30);
+  insertion_at_tail(head, 50);
+  insertion_at(head->next, 40);
+  insertion_at_head(&head, 10);
+
+  print_list(head); // 10, 20, 30, 40, 50
   deallocate_list(head);
   return 0;
 }

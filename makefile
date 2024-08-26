@@ -2,19 +2,19 @@
 CC = gcc
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -g
+CFLAGS = -Wall -Ilib -Wextra -g
 
 # Executable name
 TARGET = build/main
 
 # Source files
-SOURCES = main.c
+SOURCES = main.c lib/functions_definition.c
 
 # Object files
-OBJECTS = $(SOURCES:%.c=build/%.o)
+OBJECTS = $(SOURCES:%.c %lib/.c=build/%.o)
 
 # Default target
-all: build $(TARGET)
+all: $(TARGET)
 
 # Rule to build the target executable
 $(TARGET): $(OBJECTS)
