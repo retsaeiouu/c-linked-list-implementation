@@ -1,8 +1,4 @@
 #include "linked_list_functions.h"
-#include <errno.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 static struct node *new_node(int value) {
   struct node *new = (struct node *)malloc(sizeof(struct node));
