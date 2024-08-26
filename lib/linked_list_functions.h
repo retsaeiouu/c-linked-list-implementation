@@ -12,7 +12,8 @@ struct node {
 
 struct node *new_head(int value);
 void insertion_at_head(struct node **head, int value);
-void insertion_at(struct node *previous_node, int value);
+void insertion_before(struct node *previous_node, int value);
 void insertion_at_tail(struct node *head, int value);
+void reverse_list(struct node **head);
 void print_list(struct node *head);
 void deallocate_list(struct node *head);
